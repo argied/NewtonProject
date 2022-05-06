@@ -45,7 +45,7 @@ public class Newton {
 		
 		System.out.printf("%46d%15s%15s%15s%15s\n", 1, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()));
 		int i =2;
-		while (Ea>=z) {
+		while (Ea>z) {
 			String newX1 = String.valueOf(round(x1, 4));
 			Argument test1 = new Argument ("x = "+newX1);
 			fOrig = new Expression ("f(x)", f, test1);
