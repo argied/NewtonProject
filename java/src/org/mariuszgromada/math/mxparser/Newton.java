@@ -5,16 +5,16 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Newton {
-	//this is the main program that uses methods newtonMethod() and round()
+	//this is the main program that uses method newtonMethod()
 	public static void main (String [] args) {
 		Scanner input = new Scanner(System.in);
 
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
-		System.out.printf("%70s%2s\n"," ","NEWTON'S METHOD");
-		System.out.printf("%62s%2s\n"," ","by: Ditchon, Donio, Panilan");
-		System.out.printf("%68s%2s\n"," ","ENCE2A | SY 2021-22");
+		System.out.printf("%73s%2s\n"," ","NEWTON'S METHOD");
+		System.out.printf("%65s%2s\n"," ","by: Ditchon, Donio, Panilan");
+		System.out.printf("%71s%2s\n"," ","ENCE2A | SY 2021-22");
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
-		System.out.printf("%46s%2s\n"," ","This program approximates the value of x using Newton's Method. ");
+		System.out.printf("%49s%2s\n"," ","This program approximates the value of x using Newton's Method. ");
 
 		System.out.printf("\n%35s%2s"," ","Enter function: ");
 		String func = input.nextLine();//input function
@@ -27,10 +27,15 @@ public class Newton {
 
 		newtonMethod(func,valueX,z,rounding);//calling newtonMethod
 
-		System.out.printf("\n\n%35s%2s"," ","Continue(any key) or Exit(e)? ");
+		System.out.printf("\n\n%35s%2s"," ","Continue or Exit? ");
 		String choice = input.next();
+		choice = choice.toLowerCase();
 		switch (choice) {//making choice to whether terminate or continue the operation
 		case "e":
+			System.out.printf("%35s%2s\n"," ","Nice Job!");
+			input.close();
+			break;
+		case "exit":
 			System.out.printf("%35s%2s\n"," ","Nice Job!");
 			input.close();
 			break;
