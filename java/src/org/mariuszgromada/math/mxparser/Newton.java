@@ -47,8 +47,8 @@ public class Newton {
 		}
 	}	
 
-	static double newtonMethod(String func,String valueX, double z,int rounding) {			
-		String dFormat = Integer.toString(rounding);
+	static void newtonMethod(String func,String valueX, double z,int rounding) {			
+		String dFormat = null;
 
 		if (rounding == 1) dFormat = "#.#";//when rounding = 1, it will limit the decimal places to 1
 		if (rounding == 2) dFormat = "#.##";//when rounding = 2, it will limit the decimal places to 2, so on
@@ -75,32 +75,21 @@ public class Newton {
 		System.out.printf("%50s%11s%15s%15s%15s%15s\n", "Iteration", "x0", "x1", "f(x0)", "f'(x0)","Ea");
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 
-		double RfOrig = round(fOrig.calculate(), rounding);
-		double RfPrime = round(fPrime.calculate(),rounding);
 
 		double x0 = Double.parseDouble(valueX);
-		double Rx0 = round(x0, rounding);
-
-		double x1 =  Rx0 - (RfOrig/RfPrime);
-		double Rx1 = round(x1, rounding);
-
-		double Ea = Math.abs(Rx1 - Rx0);
+		double x1 =  round(x0, rounding) - (round(fOrig.calculate(), rounding)/round(fPrime.calculate(),rounding));
+		double Ea = Math.abs(round(x1, rounding) - round(x0, rounding));
 
 		System.out.printf("%46d%15s%15s%15s%15s\n", 1, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()));
 		int i =2;
 		while (Ea>z) {//looping the iterations from 2 to nth
-			Argument test1 = new Argument ("x = "+String.valueOf(Rx1));
+			Argument test1 = new Argument ("x = "+String.valueOf(round(x1, rounding)));
 			fOrig = new Expression ("f(x)", f, test1);
-			fPrime = new Expression ("der("+func+", x, "+String.valueOf(Rx1)+")");
-
-			RfOrig = round(fOrig.calculate(), rounding);
-			RfPrime = round(fPrime.calculate(),rounding);
+			fPrime = new Expression ("der("+func+", x, "+String.valueOf(round(x1, rounding))+")");
 
 			x0=x1;
-			Rx0 = round(x0, rounding);
-			x1 =  Rx0 - (RfOrig/RfPrime);
-			Rx1 = round(x1, rounding);
-			Ea = Math.abs(Rx1 - Rx0);
+			x1 =  round(x0, rounding) - (round(fOrig.calculate(),rounding)/round(fPrime.calculate(),rounding));
+			Ea = Math.abs(round(x1, rounding) - round(x0, rounding));
 
 			System.out.printf("%46d%15s%15s%15s%15s%15s\n", i, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()), df.format(Ea));
 			i++;            
@@ -110,7 +99,6 @@ public class Newton {
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("\n%35s%2s\n"," ","At iteration #"+(i-1)+", the root is approximately "+df.format(x1));//displaying the approximate value of x
 
-		return 0;
 	}
 
 	//a static method to round decimals in a specific place
