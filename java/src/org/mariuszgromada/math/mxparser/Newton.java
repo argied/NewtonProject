@@ -9,11 +9,11 @@ public class Newton {
 	public static void main (String [] args) {
 		Scanner input = new Scanner(System.in);
 
-		System.out.printf("%35s%2s\n"," ","<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" );
+		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("%70s%2s\n"," ","NEWTON'S METHOD");
 		System.out.printf("%62s%2s\n"," ","by: Ditchon, Donio, Panilan");
 		System.out.printf("%68s%2s\n"," ","ENCE2A | SY 2021-22");
-		System.out.printf("%35s%2s\n"," ","<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" );
+		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("%46s%2s\n"," ","This program approximates the value of x using Newton's Method. ");
 
 		System.out.printf("\n%35s%2s"," ","Enter function: ");
@@ -30,15 +30,15 @@ public class Newton {
 		System.out.printf("\n\n%35s%2s"," ","Continue(any key) or Exit(e)? ");
 		String choice = input.next();
 		switch (choice) {//making choice to whether terminate or continue the operation
-			case "e":
-				System.out.printf("%35s%2s\n"," ","Nice Job!");
-				input.close();
-				break;
-			default:
-				System.out.println("\n\n"); 
-				main(null);
-				input.close();
-				break;
+		case "e":
+			System.out.printf("%35s%2s\n"," ","Nice Job!");
+			input.close();
+			break;
+		default:
+			System.out.println("\n\n"); 
+			main(null);
+			input.close();
+			break;
 		}
 	}	
 
@@ -66,19 +66,19 @@ public class Newton {
 		Expression fPrime = new Expression ("der("+func+", x, "+valueX+")");//parsing first derivative of the function
 
 		System.out.printf("\n%35s%2s"," ","TABULATED RESULTS");
-		System.out.printf("\n%35s%2s\n"," ","<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" );
+		System.out.printf("\n%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("%50s%11s%15s%15s%15s%15s\n", "Iteration", "x0", "x1", "f(x0)", "f'(x0)","Ea");
-		System.out.printf("%35s%2s\n"," ","<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" );
-		
+		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
+
 		double RfOrig = round(fOrig.calculate(), rounding);
 		double RfPrime = round(fPrime.calculate(),rounding);
-		
+
 		double x0 = Double.parseDouble(valueX);
 		double Rx0 = round(x0, rounding);
-		
+
 		double x1 =  Rx0 - (RfOrig/RfPrime);
 		double Rx1 = round(x1, rounding);
-		
+
 		double Ea = Math.abs(Rx1 - Rx0);
 
 		System.out.printf("%46d%15s%15s%15s%15s\n", 1, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()));
@@ -87,7 +87,7 @@ public class Newton {
 			Argument test1 = new Argument ("x = "+String.valueOf(Rx1));
 			fOrig = new Expression ("f(x)", f, test1);
 			fPrime = new Expression ("der("+func+", x, "+String.valueOf(Rx1)+")");
-			
+
 			RfOrig = round(fOrig.calculate(), rounding);
 			RfPrime = round(fPrime.calculate(),rounding);
 
@@ -102,7 +102,7 @@ public class Newton {
 			if (i>100) {System.out.printf("%35s%2s\n"," ","Seems to be infinite");break;}
 			if (Ea ==0)break;
 		}
-		System.out.printf("%35s%2s\n"," ","<><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>" );
+		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("\n%35s%2s\n"," ","At iteration #"+(i-1)+", the root is approximately "+df.format(x1));//displaying the approximate value of x
 
 		return 0;
