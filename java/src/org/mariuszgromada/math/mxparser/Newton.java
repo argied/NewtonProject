@@ -75,7 +75,6 @@ public class Newton {
 		System.out.printf("%50s%11s%15s%15s%15s%15s\n", "Iteration", "x0", "x1", "f(x0)", "f'(x0)","Ea");
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 
-
 		double x0 = Double.parseDouble(valueX);
 		double x1 =  round(x0, rounding) - (round(fOrig.calculate(), rounding)/round(fPrime.calculate(),rounding));
 		double Ea = Math.abs(round(x1, rounding) - round(x0, rounding));
@@ -91,14 +90,14 @@ public class Newton {
 			x1 =  round(x0, rounding) - (round(fOrig.calculate(),rounding)/round(fPrime.calculate(),rounding));
 			Ea = Math.abs(round(x1, rounding) - round(x0, rounding));
 
-			System.out.printf("%46d%15s%15s%15s%15s%15s\n", i, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()), df.format(Ea));
+			System.out.printf("%46d%15s%15s%15s%15s%15s\n", i, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()), 
+					df.format(Ea));
 			i++;            
 			if (i>100) {System.out.printf("%35s%2s\n"," ","Seems to be infinite");break;}
 			if (Ea ==0)break;
 		}
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("\n%35s%2s\n"," ","At iteration #"+(i-1)+", the root is approximately "+df.format(x1));//displaying the approximate value of x
-
 	}
 
 	//a static method to round decimals in a specific place
