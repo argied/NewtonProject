@@ -31,19 +31,14 @@ public class Newton {
 		String choice = input.next();
 		choice = choice.toLowerCase();
 		switch (choice) {//making choice to whether terminate or continue the operation
-		case "e":
-			System.out.printf("%35s%2s\n"," ","Nice Job!");
+		case "e", "exit" -> {
+			System.out.printf("%45s%2s\n", " ", "Nice Job!");
 			input.close();
-			break;
-		case "exit":
-			System.out.printf("%35s%2s\n"," ","Nice Job!");
-			input.close();
-			break;
-		default:
-			System.out.println("\n\n"); 
+		}default -> {
+			System.out.println("\n\n");
 			main(null);
 			input.close();
-			break;
+		}
 		}
 	}	
 
@@ -82,9 +77,9 @@ public class Newton {
 		System.out.printf("%46d%15s%15s%15s%15s\n", 1, df.format(x0), df.format(x1), df.format(fOrig.calculate()), df.format(fPrime.calculate()));
 		int i =2;
 		while (Ea>z) {//looping the iterations from 2 to nth
-			Argument test1 = new Argument ("x = "+String.valueOf(round(x1, rounding)));
+			Argument test1 = new Argument ("x = "+round(x1, rounding));
 			fOrig = new Expression ("f(x)", f, test1);
-			fPrime = new Expression ("der("+func+", x, "+String.valueOf(round(x1, rounding))+")");
+			fPrime = new Expression ("der("+func+", x, "+round(x1, rounding)+")");
 
 			x0=x1;
 			x1 =  round(x0, rounding) - (round(fOrig.calculate(),rounding)/round(fPrime.calculate(),rounding));
