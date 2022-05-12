@@ -89,7 +89,6 @@ public class Newton {
 					df.format(Ea));
 			i++;            
 			if (i>100) {System.out.printf("%35s%2s\n"," ","Seems to be infinite");break;}
-			if (Ea ==0)break;
 		}
 		System.out.printf("%35s%2s\n"," ","==========================================================================================" );
 		System.out.printf("\n%35s%2s\n"," ","At iteration #"+(i-1)+", the root is approximately "+df.format(x1));//displaying the approximate value of x
